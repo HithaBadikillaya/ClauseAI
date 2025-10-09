@@ -2,25 +2,102 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --foreground: #0b1220; /* darker for readability on white */
+  --muted: #6b7280;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+  --navy-900: #071428;
+  --navy-800: #0b1b2c;
+  --gold-500: #f6c84c;
+  --gold-400: #ffd86b;
+  --ai-accent: #00ffd8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #071428;
+    --foreground: #e6eef8;
+    --muted: #94a3b8;
   }
 }
+
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* Navbar */
+nav { position: sticky; top: 0; z-index: 60; }
+
+/* Small helpers to complement Tailwind defaults for a sleeker look */
+.card {
+  background: var(--background);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+/* Gold accent helper */
+.bg-gold { background: linear-gradient(90deg, var(--gold-500), var(--gold-400)); }
+
+.shadow-glow { box-shadow: 0 8px 36px rgba(15,23,42,0.06), 0 2px 12px rgba(0,0,0,0.04); }
+
+/* scanning bar animation */
+@keyframes scanMove { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.animate-scan { animation: scanMove 2.6s linear infinite; }
+
+/* particle helpers */
+.particle { position: absolute; opacity: 0.06; filter: blur(12px); }
+.particle-1 { width: 420px; height: 420px; background: radial-gradient(circle at 20% 20%, rgba(0,255,218,0.12), transparent 30%); top: -120px; right: -60px; }
+.particle-2 { width: 320px; height: 320px; background: radial-gradient(circle at 50% 50%, rgba(246,200,76,0.08), transparent 30%); bottom: -100px; left: -60px; }
+.particle-3 { width: 220px; height: 220px; background: radial-gradient(circle at 70% 30%, rgba(109,211,255,0.06), transparent 30%); top: 40%; left: 10%; }
+
+/* gold color var used in components */
+.bg-gold-500 { background-color: var(--gold-500); }
+.text-gold { color: var(--gold-500); }
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(90deg,#0b74e6,#0066cc);
+  color: white;
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(11,116,230,0.14);
+  border: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.btn-danger {
+  background: linear-gradient(90deg,#e74c3c,#c0392b);
+  color: white;
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(231,76,60,0.12);
+}
+
+.muted { color: var(--muted); }
+
+/* Layout helpers */
+.container-xl { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+.hero { padding: 2.5rem 0; }
+.kbd { background:#f3f4f6; padding:0.15rem 0.5rem; border-radius:6px; font-size:0.85rem; }
+.result-card { background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.96)); border-radius:12px; padding:1rem; }
+.badge { display:inline-block; padding:0.25rem 0.5rem; border-radius:999px; background:#fff7ed; color:#7c2d12; font-size:0.75rem; }
+
+/* GSAP-friendly helpers */
+.gsap-fade-up { opacity: 0; transform: translateY(14px); }
+.gsap-in-view { opacity: 1; transform: translateY(0); transition: opacity 420ms ease, transform 420ms cubic-bezier(.22,.9,.36,1); }
+
+/* Footer readability */
+footer { color: #374151; }

@@ -34,3 +34,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+### Animations
+
+This project uses Framer Motion (and optionally GSAP) for UI animations. After switching to this branch, run the following in the `main-project/frontend/clause-ai` folder to install the packages:
+
+```bash
+npm install
+```
+
+If you prefer to only install Framer Motion:
+
+```bash
+npm install framer-motion
+```
+
+Note on Framer Motion and React 19:
+
+If your project uses React 19 (as in this template), Framer Motion may have a peer dependency for React 18. You have three options:
+
+- Downgrade to React 18 in `package.json` and run `npm install`.
+- Install Framer Motion anyway using legacy peer deps (not recommended for production):
+
+```bash
+npm install framer-motion --legacy-peer-deps
+```
+
+- Use GSAP (already listed) for animations instead of Framer Motion.
